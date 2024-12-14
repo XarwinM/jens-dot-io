@@ -1,0 +1,6 @@
+_freeze
+_site
+.quarto
+
+experiments
+tmp.txt
