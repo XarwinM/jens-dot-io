@@ -24,7 +24,7 @@ format:
     code-tools: true
     comments:
       giscus:
-        repo: XarwinM/jensmueller-io
+        repo: XarwinM/jens-dot-io
         category: Announcements
         loading: lazy
         input-position: bottom
