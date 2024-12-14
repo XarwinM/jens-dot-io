@@ -13,13 +13,18 @@ project:
     watch-inputs: true
     navigate: true
 
+publish:
+  method: gh-pages
+  branch: gh-pages
+  dir: docs
+
 title-meta: "Jens Müller"
 description-meta: "PhD in Machine Learning  | Mathematics, Computer Science | NLP"
 
 website:
   title: "Jens Müller"
   description: "description"
-  site-url: https://jensmueller.io
+  site-url: www.jensmueller.io
   
   
   
