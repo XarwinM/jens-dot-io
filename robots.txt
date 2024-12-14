@@ -1,1 +1,1 @@
-Sitemap: jensmueller.io/sitemap.xml
+Sitemap: https://jensmueller.io/sitemap.xml
