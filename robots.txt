@@ -1,1 +1,1 @@
-Sitemap: https://XarwinM.github.io/jens-dot-io/sitemap.xml
+Sitemap: www.jensmueller.io/sitemap.xml
