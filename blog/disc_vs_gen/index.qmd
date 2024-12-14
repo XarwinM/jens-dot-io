@@ -1,0 +1,42 @@
+---
+title: "The future of Work is Evaluation"
+description: "In a future where AI models increase in capacity, people will not generate solutions, but evaluate them and provide feedback."
+date: 10-15-2024
+categories: 
+  - AI 
+  - Future
+image: beethoven.png
+format:
+  html:
+    fig-cap-location: bottom
+    include-before-body: ../../html/margin_image.html
+draft: false
+twitter-card: 
+  image: "beethoven.png"
+---
+
+
+# Creation and Evaluation
+
+
+The creative process involves more than just generating ideas — it requires continuous evaluation and refinement. Take Beethoven, for example. His manuscripts reveal a constant cycle of revisions, demonstrating two key processes working in tandem: creation and critical assessment. He would repeatedly refine his compositions until his artistic vision was fully realized. This process is not limited to music or other art forms. The same dynamic is found in entrepreneurship, product development and other creative disciplines, where creation and critical evaluation work together in a continuous loop.
+
+# AI as creator
+
+This creative process mirrors the dynamic in Generative Adversarial Networks (GANs), where the generator produces a “solution” and the discriminator evaluates whether it meets the desired standard. In this context, “good enough” means that the generated output is indistinguishable from a reference dataset. The generator's goal is to produce outputs indistinguishable from the reference, whether it is a collection of music, or other creative work. 
+
+In the near future, AI models will become highly proficient in both creation and refinement, increasingly capable of fulfilling a user’s intent and taking over much of the creative process. In the GAN analogy, humans will act as the discriminator, providing feedback and guiding the the AI generator throughout the generative process.
+
+# Humans as creative directors
+
+Humans will take on a role similar to a creative director, guiding the direction and evaluating progress, but it will be AI that generates the music, products, or content. This shift will fundamentally change our approach to creative work. Instead of being the primary creators, we will transition to acting more like creative directors — shaping the vision while AI handles much of the execution.
+
+This transformation will redefine the boundaries of human creativity. As the labor-intensive aspects of creation are taken over by AI, human efforts will focus more on providing vision, shaping direction, and refining the final outcome.
+
+
+
+# Conclusion
+
+In the past, creativity was centered around craftsmanship — hands-on creation and refinement. In the near future, it will be all about creative direction. This will completely change how we work, reshaping our view of artists and creators. We may no longer think of them in terms of traditional craftsmanship, but more as creative directors who guide and orchestrate the process, while AI handles the hands-on work.
+
+

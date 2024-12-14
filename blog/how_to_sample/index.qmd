@@ -1,0 +1,159 @@
+---
+title: "LLM Sampling is Searching"
+description: "Generating samples with a Large Language Model (LLM) can be viewed as navigating a vast search space to uncover meaningful sequences. In this article, I aim to explore this search problem and offer a concise overview of some commonly used search techniques."
+date: 12-03-2024
+categories: 
+  - LLM 
+image: llm_samples.png
+format:
+  html:
+    fig-cap-location: bottom
+    include-before-body: ../../html/margin_image.html
+draft: false
+twitter-card: 
+  image: "llm_samples.png"
+---
+
+# LLMs define a Score 
+
+The primary goal of Large Language Models (LLMs) is to generate token sequences that effectively fulfill a user’s intent, whether it’s translating code between programming languages or composing a polished and well-structured email. This task can be framed as identifying a sequence of tokens that maximizes the user-defined taste or preference, formalized via a score function $s_{\text{user}}(\text{sequence} )$. The search/optimization chanllenge then becomes 
+$$
+\max_{\text{sequence}} s_{\text{user}}(\text{sequence})
+$$
+This task presents two key challenges: First, approximating the score function (*How can we accurately estimate the user's preferences?*). Second, finding sequences with high scores (*"How do we efficiently discover sequences that maximize the score function?"*).
+
+LLMs are trained to predict the probability of a next token given a sequence of input tokens. This objective leads to two significant outcomes:
+
+1. **Defining a score function:**
+Using the chain rule of probability, the LLM can define a score for a sequence of tokens as 
+$$
+p(x_1, \dots, x_n) = \prod_{i=1}^n p(x_i \mid x_1, \dots, x_{i-1})
+$$
+where $x_1, \dots, x_n$ are tokens out of a token-dictionary. 
+2.	**Customization for user intent:**
+LLMs can adapt to specific user requirements through custom scoring. This is achieved by providing an initial prompt, such as: “Transform this Java code {java_code} into Python code: ” The chain rule then evaluates:
+$$
+s_{\text{user}}(x_1, \dots, x_n) \approx p(x_1, \dots, x_n | \text{initial prompt})
+$$
+However, the extent to which this score serves as a meaningful proxy for the user’s preference  $s_{\text{user}}$ depends heavily on the quality and coverage of the probability distribution learned during training, which itself is determined by the scope of the underlying training data.
+
+In this article, we focus on the challenge of searching for the most likely (highest-scoring) sequence using LLMs — a process often referred to as sampling in LLMs.
+
+# The combinatorial search problem
+
+While LLMs provide a score function for evaluating sequences, solving the optimization problem
+
+$$
+\max_{\text{sequence}} p(\text{sequence})
+$$
+is a combinatorial search problem of enormous size. 
+
+To illustrate the scale of the challenge, consider a token vocabulary of $128,000$ tokens. Generating an optimal three-token sentence would require evaluating all possible combinations of tokens, totaling $128, 000^3$ sequences — approximately $10^{15}$ possibilities. Extending this to longer sequences increases the search space exponentially, making an exhaustive search computationally infeasible.
+
+
+# Sampling Strategies 
+
+The vast search space necessitates approximations and heuristics for practical sequence generation. In LLMs, sampling strategies serve as search methods to identify high-likelihood sequences. Over time, various sampling techniques have been developed, each offering unique approaches and trade-offs for navigating the search space.
+
+
+## Greedy Search
+
+The naive approach to text generation, known as greedy search, always selects the token with the highest probability at each step. While this seems intuitive, always choosing the most likely token at each step does not necessarily result in the most probable overall sequence. 
+
+
+### No guarantee for global optimum 
+
+Unlike single-output sampling methods—such as those used in diffusion models, generative adversarial networks (GANs), or normalizing flows—sequential sampling involves dynamically generating each token based on the context established by previous tokens.
+
+In sequential sampling, the process can be visualized as navigating through a graph. Each node represents a token, and each directed edge between two nodes is weighted by $\log p(x | c)$, where $p(x | c)$ is the conditional probability of the token $x$ given the preceding context $c$. The goal is to navigate this graph in a way that maximizes the total probability of the entire sequence^[Every sequence must end with a specific end-of-sequence (EOS) token], calculated as the sum of the log-likelihoods of each token given its context. However, greedy search only considers the highest-probability edge at each step, potentially missing paths that yield a higher overall sequence probability.
+
+
+
+### Why to deviate? 
+
+There are two key reasons to deviate from the standard greedy search approach: First, it can reveal sequences with higher overall likelihood that might be overlooked by greedy decisions. Second, it enables finding sequences that align better with independent quality metrics, such as favoring unexpected or creative solutions.
+
+
+## Beam Search
+
+Beam search expands the scope of exploration compared to greedy search by considering $k$ different paths instead of just one. It evaluates the $k$ most promising paths at each step. Beam search can be thought of as a more comprehensive version of greedy search, exploring multiple high-probability paths instead of committing to just one based on a local, next-token perspective.
+
+For instance, consider a beam width of $k=3$ and a vocabulary size of $128,000$ tokens. Assume the three most likely sequences so far are $s_1$, $s_2$, and $s_3$. At the next step, beam search computes probabilities for all possible next tokens for each of these sequences, leading to $3 \cdot 128, 000 = 384,000$ softmax outputs, corresponding to $p(x | s_i)$ for $i = 1, 2, 3$.
+
+After calculating these probabilities, beam search evaluates the scores for the entire set of possible continuations, selecting the top $k=3$ outputs with the highest scores. The score for a candidate sequence is given by:
+
+$$ 
+ \log p(x,s_i) = \log p(x | s_i) + \log p(s_i),
+$$
+
+where $p(s_i)$ represents the cumulative probability of the sequence $s_i$ up to the current step. This scoring combines the likelihood of the continuation $\log p(x | s_i)$ and the likelihood of the path so far $\log p(s_i)$. The process repeats, always maintaining the $k$ most promising sequences at each step, until a stopping condition is met.
+
+## Sampling and Temperature Scaling
+
+Instead of always selecting the most likely token, we can sample tokens based on their predicted probabilities. Given a sequence of input tokens, an LLM computes logits, which are transformed into probabilities via a softmax layer. Since LLMs are trained using cross-entropy loss, these predicted probabilities aim to approximate the true probabilities observed in the training data ^[This statemeent is not entirely accurate, as LLMs are also trained using techniques from *inverse reinforcement learning*]. 
+
+### Temperature Scaling
+Sampling from the predicted probability distribution versus always selecting the path with the locally highest likelihood (greedy search) can be understood as selecting between exploration and exploitation. Always taking the locally highest likelihood path corresponds to the *greedy* approach, where the LLM exclusively exploits its current knowledge. In contrast, sampling from the predicted probability distribution allows for exploration, enabling the LLM to consider alternative paths that may lead to better outcomes.
+
+Temperature scaling is a mechanism that controls the trade-off between exploitation (greedy search) and *extreme* exploration (random sampling). It achieves this by adjusting the sharpness of the probability distribution output by the LLM. The scaled probability distribution is given by:
+
+$$
+\text{softmax}(z, T) = \frac{\exp\left(\frac{z}{T}\right)}{\sum_i \exp\left(\frac{z_i}{T}\right)}
+$$
+
+* At $T = 1$, the original probability distribution predicted by the model is recovered without modification.
+* 	As $T$ increases, the scaling reduces the influence of differences between probabilities. In the limit of high $T$, all probabilities approach uniformity, leading to random sampling.
+*	At  $T = 0$ , the model deterministically selects the token with the highest likelihood (greedy solution), as the probabilities become concentrated entirely on the most likely outcome.
+
+Thus, temperature scaling provides a continuum between deterministic (greedy) selection and full random exploration, enabling fine-tuned control over the model’s behavior during sampling.
+
+
+## Keeping the explorer in line: Top-$k$, top-$p$, min-$p$ 
+
+Given the vast size of the token dictionary in an LLM, it is often efficient to focus only on the logits with the highest values. This approach offers two primary advantages:
+
+*	**Improved Search Focus:** By narrowing the selection to the most likely outputs, we reduce the risk of sampling highly unlikely tokens that could lead to incorrect results, effectively avoiding too explorative solutions.
+*	**Cost Efficiency:** By pruning less relevant tokens, we minimize computational overhead, reducing overall processing costs.
+
+This principle is implemented in top-$k$ sampling, which selects only the top $k$ tokens with the highest logits, discards the rest, and then computes the softmax probabilities for the remaining tokens to sample the next token.
+ 
+Min-$p$ sampling operates similarly, but instead of selecting tokens based on logits, it computes the softmax probabilities first and retains only those tokens with a likelihood greater than a specified minimum threshold $p$. Sampling is then restricted to this subset of tokens. While it may be take more compute than top-$k$, min-$p$ sampling can be more intuitive from a human perspective, as it relies on probabilities rather than logits, which do not inherently carry probabilistic meaning. For instance, all tokens generated in min-$p$ sampling have at least probability $p$ given the previous tokens. In top-$k$ sampling we might encounter the scenario where only one sample carries almost all probability, but we consider $k-1$ additional tokens during sampling. 
+
+Top-$p$ sampling (also known as nucleus sampling) takes a slightly different approach. It ensures that sampling is confined to the most probable tokens whose cumulative probabilities add up to at least $p$. Let’s compare min-$p$ sampling and top-$p$ sampling with an example. Suppose we set $p = 0.2$ for min-$p$ sampling and $p = 0.8$ for top-$p$ sampling. It’s reasonable to use a higher $p$ in top-$p$ sampling since it defines not an individual threshold for each token but the cumulative probability weight of the distribution to sample from.
+
+
+Now consider two scenarios where one token dominates the probability distribution:
+
+1.	In the first scenario, the highest-probability token has a weight of 0.8, and all other tokens have probabilities below 0.2.
+2.	In the second scenario, the highest-probability token has a weight of 0.25, with the remaining tokens each having probabilities below 0.2.
+
+In the first scenario, both min-$p$ and top-$p$ sampling would select only the highest-probability token for sampling, as it surpasses the individual threshold of $p = 0.2$ (with no other token meeting this threshold) and satisfies the cumulative $p = 0.8$ requirement.
+
+However, in the second scenario, the behavior diverges:
+
+*	Min-$p$ sampling: Only the token with $p = 0.25$ is considered, as all others fall below the threshold of 0.2. This rigid threshold excludes other tokens, potentially overlooking meaningful alternatives.
+*	Top-$p$ sampling: The strategy adapts to the probability distribution by including the most likely tokens until their cumulative probability reaches 0.8. This ensures that multiple plausible tokens are considered, reflecting the underlying uncertainty in the distribution.
+
+This adaptability makes top-$p$ sampling more flexible and better suited for handling distributions where probabilities are spread among several tokens.
+
+# Restricting the search space
+
+We have explored strategies for navigating the search space, but another approach is to reduce the size of the search space itself. For example, if the desired output is in JSON format, we can constrain the generation process by ensuring that the first token is ‘{’ and the sequence ends with ‘}’. This approach narrows the model’s focus to valid JSON structures, significantly reducing complexity and improving efficiency.
+
+# Can we tell when we are lost
+
+An LLM may sometimes exhibit uncertainty in its predictions due to various factors. One common reason is the presence of multiple equally plausible outcomes, such as *synonyms* or alternative expressions that convey the *same semantic meaning*. For instance, words like *ordering* and *buying* can be interchangeable in certain contexts, leading the model to consider both equally likely. Similarly, when tasked with suggesting a math problem, the LLM might judge several distinct but equally appropriate responses with the same likelihood. This type of uncertainty, however, should not halt the search but can be effectively managed within the sampling strategy to promote diverse and meaningful outputs. 
+
+Another source of uncertainty arises when the LLM encounters input prompts outside its training domain—scenarios. In such cases, the model’s predictions may reflect this uncertainty, as it relies on extrapolation rather than prior knowledge. In these situations, the model’s outputs may be less reliable, making it necessary to explore alternative paths.
+
+[Entropix](https://github.com/xjdr-alt/entropix) is a method designed to tackle diverse uncertainty scenarios by dynamically adjusting its sampling strategies. While its practical benefits might need proof, it offers an approach to identifying situations where the search may have gone off course or where alternative paths should be explored. 
+
+
+# Conclusion
+
+
+LLM sampling can be conceptualized as a search problem guided by a customized score function. The search task involves identifying a sequence that aligns with a user’s intent, with the LLM score function serving as a proxy for that intent. The goal is to find the sequence with the highest score according to this function. Sampling strategies, in this context, are essentially search techniques designed to navigate the vast and complex search space efficiently.
+
+There are numerous ways to enhance the navigation of the search space, such as sampling multiple candidate solutions and having them evaluated by a separate LLM. In this article, I aimed to provide a brief introduction to some of the most widely used and debated strategies.
+
+

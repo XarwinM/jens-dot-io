@@ -1,0 +1,60 @@
+authorname: "Jens Müller"
+draft: false
+
+project:
+  type: website
+  
+  resources:
+    - "img/**"
+
+  preview: 
+    port: 22222
+    browser: true
+    watch-inputs: true
+    navigate: true
+
+title-meta: "Jens Müller"
+description-meta: "PhD in Machine Learning  | Mathematics, Computer Science | NLP"
+
+website:
+  title: "Jens Müller"
+  description: "description"
+  site-url: https://jensmueller.io
+  
+  
+  
+  navbar:
+    pinned: true
+    #logo: /img/logo.png
+    left:
+      - text: Blog
+        href: blog/index.qmd
+      - text: Projects 
+        href: projects/index.qmd
+      #- text: Consumption 
+      #  href: consumption/index.qmd
+  
+  page-footer: 
+    left: |
+      <span class="faux-block">&#169; 2024 Jens Müller</span>
+    center: 
+      - href: impressum/index.qmd
+    right: |
+      <span class="faux-block"><a href="https://github.com/XarwinM/jens-dot-io">View source on GitHub</a></span>
+  
+execute:
+  freeze: true
+  
+
+format:
+  html:
+    fontsize: 1.1em
+    theme: 
+      - flatly
+      - html/styles.scss
+    toc: false
+    anchor-sections: true
+    fig-cap-location: margin
+    reference-location: margin
+    footnotes-hover: true
+    highlight-style: monokai

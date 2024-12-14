@@ -1,0 +1,35 @@
+---
+title: "My Blog"
+author: "Jens Müller"
+title-block-banner: false
+page-layout: full
+description-meta: "Welcome to my blog, I’m thrilled to welcome you! Here, you will find a collection of articles on a wide variety of topics. Some article are some thoughts about technological topics."
+
+listing:
+  - id: posts_2024
+    contents:
+      - "disc_vs_gen/index.qmd"
+      - "how_to_sample/index.qmd"
+    sort: "date desc"
+    template: ../html/blog/listing.ejs
+    categories: true
+    
+toc-title: Year
+toc-location: right
+date-format: "MMMM D, YYYY"
+image: ""
+code-tools: false
+comments: false
+---
+
+Welcome to my blog! Here, I share my thoughts and explore problems that capture my attention. Topics range from machine learning and mathematics to futuristic speculations. Posts vary in length — some are concise, delving into a single idea, while others are more in-depth, discussing entire topics.
+
+## 2024
+
+:::{#posts_2024}
+:::
+
+---
+
+ 
+<span style="color:#909090; font-size:15px;">The website template is adapted from [Marvin Schmitt](https://marvinschmitt.com/) and post listing is based on the blog of [Andrew Heiss](https://www.andrewheiss.com/). Both are shared under the CC-BY-SA 4.0 license.</span>.

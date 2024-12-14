@@ -1,0 +1,71 @@
+---
+title: Projects
+comments: false
+toc: false
+---
+
+Here’s a list of projects where I took the lead and played a central role in driving their development and success.
+
+----
+
+## Dissertation 
+
+<img src="/img/fractal_high_colored.png" style="height: 100%; width: 100%; object-fit: contain" onclick="window.open('http://www.ub.uni-heidelberg.de/archiv/34762', 'blank');"/>
+
+<a href="http://www.ub.uni-heidelberg.de/archiv/34762" target="_blank">PhD Dissertation</a>
+
+
+This work represents the culmination of my research at Heidelberg University, contributing to fundamental and critical questions such as: *“How and under which circumstances can we predict reliably under distribution shift?”* and *“How can we identify failure cases under distribution shift?”* 
+
+Additionally, the thesis includes a comprehensive introduction to machine learning, domain generalization and causality, providing a solid foundation for the research.
+
+----
+
+## Finding Competence Regions in Domain Generalization 
+
+<img src="/img/pull_figure_competence.png" style="height: 100%; width: 100%; object-fit: contain" onclick="window.open('https://arxiv.org/abs/2303.09989', 'blank');"/>
+
+<a href="https://arxiv.org/abs/2303.09989" target="_blank">Competence Regions in Domain Generalization (arXiv)</a>
+
+
+While I initially set out to tackle the problem of making reliable predictions when circumstances change, it became increasingly clear that this task is inherently challenging — and in many cases, impossible. This realization set my focus toward *failure detection* under distribution shift, addressing the question: *Can we detect incorrect predictions when the underlying distribution has shifted, placing everything outside the model’s expected input space?*
+
+In this article, I explore the concept of *competence regions*, areas where a model can be considered reliable, within the context of domain generalization. This approach seeks to better understand where models perform well and where they are likely to fail under distribution shift.
+
+----
+
+## Understanding Context-Aware Domain Generalization 
+
+<img src="/img/pull_figure_context_aware.png" style="height: 100%; width: 100%; object-fit: contain" onclick="window.open('https://arxiv.org/abs/2312.10107', 'blank');"/>
+
+<a href="https://arxiv.org/abs/2312.10107" target="_blank">Context Aware Domain Generalization (arXiv)</a>
+
+
+In my previous [work](https://arxiv.org/pdf/2010.07167) on operationalizing the Principle of Independent Causal Mechanisms (ICM), I explored a method that discards information that varies across distributions to achieve robustness under distribution shift. In this article, I take the opposite approach — aiming to incorporate as much information as possible from the target distribution.
+
+Since labels for a novel target distribution are typically unknown, an effective strategy is to leverage additional samples from the target distribution in the form of a set. Set-encoders, a specific neural architecture designed for handling set-inputs, provide a natural solution for this task. The focus of this article was to establish and evaluate criteria that predict when this approach is likely to succeed, offering valuable insights into the applicability of set-based learning under distribution shift.
+
+----
+
+## Learning Robust Models using the Principle of ICM 
+
+<img src="/img/explanation_icp.png" style="height: 100%; width: 100%; object-fit: contain" onclick="window.open('https://arxiv.org/pdf/2010.07167', 'blank');"/>
+
+<a href="https://arxiv.org/pdf/2010.07167" target="_blank">Article (arXiv)</a> | <a href="https://www.youtube.com/watch?v=VPvmQYnv834&t=297s&ab_channel=DAGMGCPR2021" target="_blank">Talk</a>
+
+When a distribution shifts, some aspects of a system may change, while others remain unaffected. This behavior can be understood through a causal perspective, particularly via the *Principle of Independent Causal Mechanisms (ICM)*, which suggests that different causal components of a system operate independently. Identifying the invariant components holds promise for building more robust models under distribution shift.
+
+In this article, I proposed a method for identifying these components by operationalizing the *Principle of ICM*. The work includes both a formal mathematical framework (with proofs) and a proof-of-concept experimental analysis demonstrating the approach in practice.
+
+----
+
+## Legalization: A realistic and better alternative? 
+
+<img src="/img/we_want_beer.png" style="height: 100%; width: 100%; object-fit: contain" onclick="window.open('ressources/essay.pdf', 'blank');"/>
+
+<a href="ressources/essay.pdf" target="_blank">Article</a>
+
+
+This article, written during my psychology studies, reflects on the societal harm caused by the war on drugs while exploring the alternative of legalization. It combines a retrospective analysis of past consequences with evidence-based approaches for more effective future policies. (Essay is written in german)
+
+----
