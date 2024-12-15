@@ -46,7 +46,7 @@
     "href": "index.html",
     "title": "Welcome to my website!",
     "section": "",
-    "text": "Github\n  \n  \n    \n     LinkedIn\n  \n  \n    \n     Email\n  \n\n\n\n\nWelcome to my website!\nHi, I am Jens and this is my website. Here, I share topics I’m passionate about, ranging from mathematics and machine learning to futuristic speculations.\nA few words on my background and interests: I pursued and earned two master’s degrees — one in mathematics and the other in computer science. Beyond that, my curiosity led me to explore and study diverse fields, including Psychology. During my time at Heidelberg University, I conducted research in Machine Learning, focusing on challenges related to distribution shifts. My work addressed broad questions like “How can we make reliable predictions when circumstances change?” (robustness, domain generalization) and “How can we detect when shifts and failures occur?” (OOD detection, failure detection, selective classification). I’ve published papers on these topics and completed my PhD in the process.\nCurrently, I work as a Data Scientist at Diamant Software, primarily focusing on Natural Language Processing (NLP) tasks."
+    "text": "Github\n  \n  \n    \n     LinkedIn\n  \n  \n    \n     Email\n  \n\n\n\n\nWelcome to my website!\nHi, I am Jens and this is my website. Here, I share topics I’m passionate about, ranging from mathematics and machine learning to futuristic speculations.\nA few words on my background and interests: I pursued and earned two master’s degrees — one in mathematics and the other in computer science. Beyond that, my curiosity led me to explore and study diverse fields, including psychology. During my time at Heidelberg University, I conducted research in machine learning, focusing on challenges related to distribution shifts. My work addressed broad questions like “How can we make reliable predictions when circumstances change?” (robustness, domain generalization) and “How can we detect when shifts and failures occur?” (OOD detection, failure detection, selective classification). I’ve published papers on these topics and completed my PhD in the process.\nCurrently, I work as a Data Scientist at Diamant Software, primarily focusing on Natural Language Processing (NLP) tasks."
   },
   {
     "objectID": "experiments/graph_viz.html",
@@ -172,7 +172,7 @@
     "href": "blog/index.html",
     "title": "My Blog",
     "section": "",
-    "text": "Welcome to my blog! Here, I share my thoughts and explore problems that capture my attention. Topics range from machine learning and mathematics to futuristic speculations. Posts vary in length — some are concise, delving into a single idea, while others are more in-depth, discussing entire topics."
+    "text": "Welcome to my blog! Here, I share my thoughts and explore problems that capture my attention. Topics range from machine learning and mathematics to futuristic speculations. Posts vary in length — some are concise, focusing on a single idea, while others are more comprehensive, exploring entire topics."
   },
   {
     "objectID": "blog/index.html#section",
