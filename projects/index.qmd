@@ -47,6 +47,17 @@ Since labels for a novel target distribution are typically unknown, an effective
 
 ----
 
+## ProDAS: Probabilistic Dataset of Abstract Shapes
+
+<img src="/img/prodas_example.png" style="height: 100%; width: 100%; object-fit: contain" onclick="window.open('https://archiv.ub.uni-heidelberg.de/volltextserver/34135', 'blank');"/>
+
+<a href="https://archiv.ub.uni-heidelberg.de/volltextserver/34135/" target="_blank">Article</a> | <a href="https://github.com/XarwinM/ProDAS/tree/main" target="_blank">Repository</a> 
+
+
+In this [work](https://archiv.ub.uni-heidelberg.de/volltextserver/34135/), we introduce ProDAS, a dataset that allows researchers to investigate questions of disentanglement, causal relations, and more. ProDAS enables the probabilistic generation of different shapes, textures, colors, and other attributes, making it a versatile tool for studying these phenomena. It can be understood as a more advanced version of dSprites, offering richer and more complex data for experimentation.
+
+----
+
 ## Learning Robust Models using the Principle of ICM 
 
 <img src="/img/explanation_icp.png" style="height: 100%; width: 100%; object-fit: contain" onclick="window.open('https://arxiv.org/pdf/2010.07167', 'blank');"/>
