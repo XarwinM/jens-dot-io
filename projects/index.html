@@ -88,12 +88,12 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../blog/index.html"> 
-<span class="menu-text">Blog</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link active" href="../projects/index.html" aria-current="page"> 
 <span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog/index.html"> 
+<span class="menu-text">Blog</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -153,6 +153,13 @@ ul.task-list li input[type="checkbox"] {
 <p><a href="https://arxiv.org/abs/2312.10107" target="_blank">Context Aware Domain Generalization (arXiv)</a></p>
 <p>In my previous <a href="https://arxiv.org/pdf/2010.07167">work</a> on operationalizing the Principle of Independent Causal Mechanisms (ICM), I explored a method that discards information that varies across distributions to achieve robustness under distribution shift. In this article, I take the opposite approach — aiming to incorporate as much information as possible from the target distribution.</p>
 <p>Since labels for a novel target distribution are typically unknown, an effective strategy is to leverage additional samples from the target distribution in the form of a set. Set-encoders, a specific neural architecture designed for handling set-inputs, provide a natural solution for this task. The focus of this article was to establish and evaluate criteria that predict when this approach is likely to succeed, offering valuable insights into the applicability of set-based learning under distribution shift.</p>
+<hr>
+</section>
+<section id="prodas-probabilistic-dataset-of-abstract-shapes" class="level2">
+<h2 class="anchored" data-anchor-id="prodas-probabilistic-dataset-of-abstract-shapes">ProDAS: Probabilistic Dataset of Abstract Shapes</h2>
+<p><img src="../img/prodas_example.png" style="height: 100%; width: 100%; object-fit: contain" onclick="window.open('https://archiv.ub.uni-heidelberg.de/volltextserver/34135', 'blank');"></p>
+<p><a href="https://archiv.ub.uni-heidelberg.de/volltextserver/34135/" target="_blank">Article</a> | <a href="https://github.com/XarwinM/ProDAS/tree/main" target="_blank">Repository</a></p>
+<p>In this <a href="https://archiv.ub.uni-heidelberg.de/volltextserver/34135/">work</a>, we introduce ProDAS, a dataset that allows researchers to investigate questions of disentanglement, causal relations, and more. ProDAS enables the probabilistic generation of different shapes, textures, colors, and other attributes, making it a versatile tool for studying these phenomena. It can be understood as a more advanced version of dSprites, offering richer and more complex data for experimentation.</p>
 <hr>
 </section>
 <section id="learning-robust-models-using-the-principle-of-icm" class="level2">
@@ -266,7 +273,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/jensmueller\.io");
+      var filterRegex = new RegExp("www\.jensmueller\.io");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

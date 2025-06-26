@@ -125,12 +125,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../blog/index.html"> 
-<span class="menu-text">Blog</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../projects/index.html"> 
 <span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog/index.html"> 
+<span class="menu-text">Blog</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -402,44 +402,166 @@ Article headline: Tech Giant Unveils Latest Smartphone Model with Advanced Photo
 a 97.59</code></pre>
 </div>
 </div>
-<div id="cell-6" class="cell" data-execution_count="198">
+<div id="cell-6" class="cell" data-execution_count="259">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>client <span class="op">=</span> OpenAI()</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> client.chat.completions.create(</span>
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    messages<span class="op">=</span>[{</span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">"role"</span>: <span class="st">"user"</span>,</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"content"</span>: <span class="st">"Write a brief story in three words. it should be dramatic."</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        <span class="st">"content"</span>: <span class="st">"Give a fictional description of a movie in three words."</span>,</span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    }],</span>
 <span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    model<span class="op">=</span><span class="st">"gpt-4o-mini"</span>,</span>
 <span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>    logprobs<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    temperature<span class="op">=</span><span class="dv">1</span>,</span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    top_logprobs<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    temperature<span class="op">=</span><span class="fl">0.2</span>,</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>    <span class="co">#best_of=10</span></span>
 <span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.choices[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response.choices[<span class="dv">0</span>])</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>cum <span class="op">=</span> <span class="dv">0</span>  </span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> response.choices[<span class="dv">0</span>].logprobs.content:</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(item.token, np.<span class="bu">round</span>(np.exp(item.logprob)<span class="op">*</span><span class="dv">100</span>,<span class="dv">2</span>) )</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    cum <span class="op">+=</span> item.logprob</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'cum'</span>, np.<span class="bu">round</span>(np.exp(cum)<span class="op">*</span><span class="dv">100</span>,<span class="dv">8</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Choice(finish_reason='stop', index=0, logprobs=ChoiceLogprobs(content=[ChatCompletionTokenLogprob(token='Love', bytes=[76, 111, 118, 101], logprob=-0.68893987, top_logprobs=[TopLogprob(token='Love', bytes=[76, 111, 118, 101], logprob=-0.68893987), TopLogprob(token='"', bytes=[34], logprob=-1.4389398)]), ChatCompletionTokenLogprob(token='.', bytes=[46], logprob=-2.0339823, top_logprobs=[TopLogprob(token=' betrayed', bytes=[32, 98, 101, 116, 114, 97, 121, 101, 100], logprob=-0.40898216), TopLogprob(token='.', bytes=[46], logprob=-2.0339823)]), ChatCompletionTokenLogprob(token=' Betr', bytes=[32, 66, 101, 116, 114], logprob=-0.0005138331, top_logprobs=[TopLogprob(token=' Betr', bytes=[32, 66, 101, 116, 114], logprob=-0.0005138331), TopLogprob(token=' Loss', bytes=[32, 76, 111, 115, 115], logprob=-8.375514)]), ChatCompletionTokenLogprob(token='ay', bytes=[97, 121], logprob=-0.00043090762, top_logprobs=[TopLogprob(token='ay', bytes=[97, 121], logprob=-0.00043090762), TopLogprob(token='ayed', bytes=[97, 121, 101, 100], logprob=-7.750431)]), ChatCompletionTokenLogprob(token='al', bytes=[97, 108], logprob=0.0, top_logprobs=[TopLogprob(token='al', bytes=[97, 108], logprob=0.0), TopLogprob(token='.', bytes=[46], logprob=-18.0)]), ChatCompletionTokenLogprob(token='.', bytes=[46], logprob=0.0, top_logprobs=[TopLogprob(token='.', bytes=[46], logprob=0.0), TopLogprob(token='!', bytes=[33], logprob=-20.375)]), ChatCompletionTokenLogprob(token=' Silence', bytes=[32, 83, 105, 108, 101, 110, 99, 101], logprob=-0.6334778, top_logprobs=[TopLogprob(token=' Silence', bytes=[32, 83, 105, 108, 101, 110, 99, 101], logprob=-0.6334778), TopLogprob(token=' Ash', bytes=[32, 65, 115, 104], logprob=-1.1334778)]), ChatCompletionTokenLogprob(token='.', bytes=[46], logprob=-2.8160932e-06, top_logprobs=[TopLogprob(token='.', bytes=[46], logprob=-2.8160932e-06), TopLogprob(token='.\n', bytes=[46, 10], logprob=-12.875003)])], refusal=None), message=ChatCompletionMessage(content='Love. Betrayal. Silence.', role='assistant', function_call=None, tool_calls=None, refusal=None))</code></pre>
+<pre><code>Choice(finish_reason='stop', index=0, logprobs=ChoiceLogprobs(content=[ChatCompletionTokenLogprob(token='"', bytes=[34], logprob=-0.7496403, top_logprobs=[]), ChatCompletionTokenLogprob(token='Time', bytes=[84, 105, 109, 101], logprob=-0.04794023, top_logprobs=[]), ChatCompletionTokenLogprob(token='-tr', bytes=[45, 116, 114], logprob=-0.45240924, top_logprobs=[]), ChatCompletionTokenLogprob(token='avel', bytes=[97, 118, 101, 108], logprob=-0.00016480287, top_logprobs=[]), ChatCompletionTokenLogprob(token='ing', bytes=[105, 110, 103], logprob=-2.1531068e-05, top_logprobs=[]), ChatCompletionTokenLogprob(token=' love', bytes=[32, 108, 111, 118, 101], logprob=-0.9172403, top_logprobs=[]), ChatCompletionTokenLogprob(token=' triangle', bytes=[32, 116, 114, 105, 97, 110, 103, 108, 101], logprob=-0.83480483, top_logprobs=[]), ChatCompletionTokenLogprob(token='."', bytes=[46, 34], logprob=-0.00013548243, top_logprobs=[])], refusal=None), message=ChatCompletionMessage(content='"Time-traveling love triangle."', role='assistant', function_call=None, tool_calls=None, refusal=None))
+" 47.25
+Time 95.32
+-tr 63.61
+avel 99.98
+ing 100.0
+ love 39.96
+ triangle 43.4
+." 99.99
+cum 4.96698725</code></pre>
 </div>
 </div>
-<div id="cell-7" class="cell" data-execution_count="199">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>cum <span class="op">=</span> <span class="dv">0</span>  </span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> response.choices[<span class="dv">0</span>].logprobs.content:</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(item.token, np.<span class="bu">round</span>(np.exp(item.logprob)<span class="op">*</span><span class="dv">100</span>,<span class="dv">2</span>) )</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    cum <span class="op">+=</span> item.logprob</span>
+<div id="cell-7" class="cell" data-execution_count="209">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>I <span class="fl">58.33</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a> appreciate <span class="fl">26.26</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a> humans <span class="fl">52.3</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>. <span class="fl">99.78</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'cum'</span>, np.<span class="bu">round</span>(np.exp(cum)<span class="op">*</span><span class="dv">100</span>,<span class="dv">8</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>I <span class="fl">50.12</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a> don<span class="st">'t 61.71</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="er"> feel 53.12</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>. <span class="fl">99.99</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>cum <span class="fl">16.42623173</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>cum <span class="op">=</span> <span class="dv">0</span>  </span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> response.choices[<span class="dv">0</span>].logprobs.content:</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(item.token, np.<span class="bu">round</span>(np.exp(item.logprob)<span class="op">*</span><span class="dv">100</span>,<span class="dv">2</span>) )</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    cum <span class="op">+=</span> item.logprob</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'cum'</span>, np.<span class="bu">round</span>(np.exp(cum)<span class="op">*</span><span class="dv">100</span>,<span class="dv">8</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Love 50.21
-. 13.08
- Betr 99.95
-ay 99.96
-al 100.0
-. 100.0
- Silence 53.07
-. 100.0
-cum 3.48275156</code></pre>
+<pre><code>I 54.21
+ appreciate 38.8
+ humanity 42.7
+. 99.75
+cum 8.95858825</code></pre>
+</div>
+</div>
+<div id="cell-8" class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>cum <span class="op">=</span> <span class="dv">0</span>  </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> item <span class="kw">in</span> response.choices[<span class="dv">0</span>].logprobs.content:</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(item.token, np.<span class="bu">round</span>(np.exp(item.logprob)<span class="op">*</span><span class="dv">100</span>,<span class="dv">2</span>) )</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>    cum <span class="op">+=</span> item.logprob</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'cum'</span>, np.<span class="bu">round</span>(np.exp(cum)<span class="op">*</span><span class="dv">100</span>,<span class="dv">8</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-9" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Sample data: Each path is represented by a list of (token, likelihood) tuples</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># These are example sequences; replace these with your actual sampled sequences and probabilities.</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>sampled_sequences <span class="op">=</span> [</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    [(<span class="st">"The"</span>, <span class="fl">0.9</span>), (<span class="st">"quick"</span>, <span class="fl">0.8</span>), (<span class="st">"brown"</span>, <span class="fl">0.7</span>)],</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    [(<span class="st">"The"</span>, <span class="fl">0.9</span>), (<span class="st">"slow"</span>, <span class="fl">0.6</span>), (<span class="st">"turtle"</span>, <span class="fl">0.5</span>)],</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    [(<span class="st">"A"</span>, <span class="fl">0.85</span>), (<span class="st">"quick"</span>, <span class="fl">0.75</span>), (<span class="st">"fox"</span>, <span class="fl">0.65</span>)],</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    [(<span class="st">"A"</span>, <span class="fl">0.85</span>), (<span class="st">"slow"</span>, <span class="fl">0.6</span>), (<span class="st">"brown"</span>, <span class="fl">0.4</span>)]</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize the graph</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> nx.DiGraph()</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Add nodes and edges to the graph</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sequence <span class="kw">in</span> sampled_sequences:</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>    current_path <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, (token, likelihood) <span class="kw">in</span> <span class="bu">enumerate</span>(sequence):</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>        node_label <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>token<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>likelihood<span class="sc">}</span><span class="ss">)"</span></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Update path and add node with hover text containing likelihood and sentence</span></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>        current_path <span class="op">+=</span> <span class="ss">f" </span><span class="sc">{</span>token<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>        hover_text <span class="op">=</span> <span class="ss">f"Token: </span><span class="sc">{</span>token<span class="sc">}</span><span class="ss">&lt;br&gt;Likelihood: </span><span class="sc">{</span>likelihood<span class="sc">}</span><span class="ss">&lt;br&gt;Path: </span><span class="sc">{</span>current_path<span class="sc">.</span>strip()<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">==</span> <span class="dv">0</span>:  <span class="co"># Add the starting node</span></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a>            G.add_node(node_label, hover<span class="op">=</span>hover_text, path<span class="op">=</span>current_path, likelihood<span class="op">=</span>likelihood, pos<span class="op">=</span>(i, <span class="bu">len</span>(G.nodes)))</span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:  <span class="co"># Add the edge from previous to current token</span></span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a>            prev_node_label <span class="op">=</span> <span class="ss">f"</span><span class="sc">{</span>sequence[i<span class="op">-</span><span class="dv">1</span>][<span class="dv">0</span>]<span class="sc">}</span><span class="ss"> (</span><span class="sc">{</span>sequence[i<span class="op">-</span><span class="dv">1</span>][<span class="dv">1</span>]<span class="sc">}</span><span class="ss">)"</span></span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a>            G.add_node(node_label, hover<span class="op">=</span>hover_text, path<span class="op">=</span>current_path, likelihood<span class="op">=</span>likelihood, pos<span class="op">=</span>(i, <span class="bu">len</span>(G.nodes)))</span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a>            G.add_edge(prev_node_label, node_label, weight<span class="op">=</span>np.log(likelihood))</span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-34"><a href="#cb21-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up left-to-right positions for nodes using their "pos" attribute</span></span>
+<span id="cb21-35"><a href="#cb21-35" aria-hidden="true" tabindex="-1"></a>pos <span class="op">=</span> {node: (data[<span class="st">"pos"</span>][<span class="dv">0</span>], data[<span class="st">"pos"</span>][<span class="dv">1</span>]) <span class="cf">for</span> node, data <span class="kw">in</span> G.nodes(data<span class="op">=</span><span class="va">True</span>)}</span>
+<span id="cb21-36"><a href="#cb21-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-37"><a href="#cb21-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting with Plotly</span></span>
+<span id="cb21-38"><a href="#cb21-38" aria-hidden="true" tabindex="-1"></a>edge_x <span class="op">=</span> []</span>
+<span id="cb21-39"><a href="#cb21-39" aria-hidden="true" tabindex="-1"></a>edge_y <span class="op">=</span> []</span>
+<span id="cb21-40"><a href="#cb21-40" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> edge <span class="kw">in</span> G.edges():</span>
+<span id="cb21-41"><a href="#cb21-41" aria-hidden="true" tabindex="-1"></a>    x0, y0 <span class="op">=</span> pos[edge[<span class="dv">0</span>]]</span>
+<span id="cb21-42"><a href="#cb21-42" aria-hidden="true" tabindex="-1"></a>    x1, y1 <span class="op">=</span> pos[edge[<span class="dv">1</span>]]</span>
+<span id="cb21-43"><a href="#cb21-43" aria-hidden="true" tabindex="-1"></a>    edge_x.extend([x0, x1, <span class="va">None</span>])</span>
+<span id="cb21-44"><a href="#cb21-44" aria-hidden="true" tabindex="-1"></a>    edge_y.extend([y0, y1, <span class="va">None</span>])</span>
+<span id="cb21-45"><a href="#cb21-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-46"><a href="#cb21-46" aria-hidden="true" tabindex="-1"></a>edge_trace <span class="op">=</span> go.Scatter(</span>
+<span id="cb21-47"><a href="#cb21-47" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>edge_x, y<span class="op">=</span>edge_y,</span>
+<span id="cb21-48"><a href="#cb21-48" aria-hidden="true" tabindex="-1"></a>    line<span class="op">=</span><span class="bu">dict</span>(width<span class="op">=</span><span class="fl">0.5</span>, color<span class="op">=</span><span class="st">'#888'</span>),</span>
+<span id="cb21-49"><a href="#cb21-49" aria-hidden="true" tabindex="-1"></a>    hoverinfo<span class="op">=</span><span class="st">'none'</span>,</span>
+<span id="cb21-50"><a href="#cb21-50" aria-hidden="true" tabindex="-1"></a>    mode<span class="op">=</span><span class="st">'lines'</span></span>
+<span id="cb21-51"><a href="#cb21-51" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-52"><a href="#cb21-52" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-53"><a href="#cb21-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Create node traces with hover text for each node</span></span>
+<span id="cb21-54"><a href="#cb21-54" aria-hidden="true" tabindex="-1"></a>node_x <span class="op">=</span> []</span>
+<span id="cb21-55"><a href="#cb21-55" aria-hidden="true" tabindex="-1"></a>node_y <span class="op">=</span> []</span>
+<span id="cb21-56"><a href="#cb21-56" aria-hidden="true" tabindex="-1"></a>node_text <span class="op">=</span> []</span>
+<span id="cb21-57"><a href="#cb21-57" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> node <span class="kw">in</span> G.nodes():</span>
+<span id="cb21-58"><a href="#cb21-58" aria-hidden="true" tabindex="-1"></a>    x, y <span class="op">=</span> pos[node]</span>
+<span id="cb21-59"><a href="#cb21-59" aria-hidden="true" tabindex="-1"></a>    node_x.append(x)</span>
+<span id="cb21-60"><a href="#cb21-60" aria-hidden="true" tabindex="-1"></a>    node_y.append(y)</span>
+<span id="cb21-61"><a href="#cb21-61" aria-hidden="true" tabindex="-1"></a>    node_text.append(G.nodes[node][<span class="st">'hover'</span>])</span>
+<span id="cb21-62"><a href="#cb21-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-63"><a href="#cb21-63" aria-hidden="true" tabindex="-1"></a>node_trace <span class="op">=</span> go.Scatter(</span>
+<span id="cb21-64"><a href="#cb21-64" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span>node_x, y<span class="op">=</span>node_y,</span>
+<span id="cb21-65"><a href="#cb21-65" aria-hidden="true" tabindex="-1"></a>    mode<span class="op">=</span><span class="st">'markers+text'</span>,</span>
+<span id="cb21-66"><a href="#cb21-66" aria-hidden="true" tabindex="-1"></a>    text<span class="op">=</span>[node.split(<span class="st">" "</span>)[<span class="dv">0</span>] <span class="cf">for</span> node <span class="kw">in</span> G.nodes()],  <span class="co"># Show token only (without likelihood) for cleanliness</span></span>
+<span id="cb21-67"><a href="#cb21-67" aria-hidden="true" tabindex="-1"></a>    textposition<span class="op">=</span><span class="st">"bottom center"</span>,</span>
+<span id="cb21-68"><a href="#cb21-68" aria-hidden="true" tabindex="-1"></a>    marker<span class="op">=</span><span class="bu">dict</span>(size<span class="op">=</span><span class="dv">10</span>, color<span class="op">=</span><span class="st">'#FFA07A'</span>),</span>
+<span id="cb21-69"><a href="#cb21-69" aria-hidden="true" tabindex="-1"></a>    hoverinfo<span class="op">=</span><span class="st">'text'</span>,</span>
+<span id="cb21-70"><a href="#cb21-70" aria-hidden="true" tabindex="-1"></a>    hovertext<span class="op">=</span>node_text</span>
+<span id="cb21-71"><a href="#cb21-71" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb21-72"><a href="#cb21-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-73"><a href="#cb21-73" aria-hidden="true" tabindex="-1"></a><span class="co"># Assemble the figure with a left-to-right layout</span></span>
+<span id="cb21-74"><a href="#cb21-74" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> go.Figure(data<span class="op">=</span>[edge_trace, node_trace],</span>
+<span id="cb21-75"><a href="#cb21-75" aria-hidden="true" tabindex="-1"></a>                layout<span class="op">=</span>go.Layout(</span>
+<span id="cb21-76"><a href="#cb21-76" aria-hidden="true" tabindex="-1"></a>                    title<span class="op">=</span><span class="st">'Sampled Sequences Visualization (Left-to-Right)'</span>,</span>
+<span id="cb21-77"><a href="#cb21-77" aria-hidden="true" tabindex="-1"></a>                    showlegend<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb21-78"><a href="#cb21-78" aria-hidden="true" tabindex="-1"></a>                    hovermode<span class="op">=</span><span class="st">'closest'</span>,</span>
+<span id="cb21-79"><a href="#cb21-79" aria-hidden="true" tabindex="-1"></a>                    margin<span class="op">=</span><span class="bu">dict</span>(b<span class="op">=</span><span class="dv">0</span>, l<span class="op">=</span><span class="dv">0</span>, r<span class="op">=</span><span class="dv">0</span>, t<span class="op">=</span><span class="dv">50</span>),</span>
+<span id="cb21-80"><a href="#cb21-80" aria-hidden="true" tabindex="-1"></a>                    xaxis<span class="op">=</span><span class="bu">dict</span>(showgrid<span class="op">=</span><span class="va">False</span>, zeroline<span class="op">=</span><span class="va">False</span>, visible<span class="op">=</span><span class="va">False</span>),</span>
+<span id="cb21-81"><a href="#cb21-81" aria-hidden="true" tabindex="-1"></a>                    yaxis<span class="op">=</span><span class="bu">dict</span>(showgrid<span class="op">=</span><span class="va">False</span>, zeroline<span class="op">=</span><span class="va">False</span>, visible<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb21-82"><a href="#cb21-82" aria-hidden="true" tabindex="-1"></a>                ))</span>
+<span id="cb21-83"><a href="#cb21-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-84"><a href="#cb21-84" aria-hidden="true" tabindex="-1"></a>fig.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<pre><code>Unable to display output for mime type(s): application/vnd.plotly.v1+json</code></pre>
 </div>
 </div>
 
@@ -538,7 +660,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/jensmueller\.io");
+      var filterRegex = new RegExp("www\.jensmueller\.io");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

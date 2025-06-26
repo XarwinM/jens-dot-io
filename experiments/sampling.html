@@ -122,12 +122,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../blog/index.html"> 
-<span class="menu-text">Blog</span></a>
-  </li>  
-  <li class="nav-item">
     <a class="nav-link" href="../projects/index.html"> 
 <span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../blog/index.html"> 
+<span class="menu-text">Blog</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -189,31 +189,35 @@ Cell <span class="ansi-green-fg">In[4], line 3</span>
 <pre><code>"Human: I'm feeling quite well, thank you for asking. Just a bit tired from the morning rush, but otherwise energized and ready to take on the day! How about you?"</code></pre>
 </div>
 </div>
-<div id="cell-3" class="cell" data-execution_count="6">
+<div id="cell-3" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> ollama</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> ollama.chat(model<span class="op">=</span><span class="st">'llama3.1'</span>, messages<span class="op">=</span>[</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  {</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'role'</span>: <span class="st">'user'</span>,</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">'content'</span>: <span class="st">'Why is the sky blue?'</span>,</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  },</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  n_probs<span class="op">=</span><span class="dv">3</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>])</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response[<span class="st">'message'</span>][<span class="st">'content'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>The sky appears blue to us because of a phenomenon called Rayleigh scattering, named after the British physicist Lord Rayleigh who first described it in the late 19th century. Here's why:
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>],</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  n_probs<span class="op">=</span><span class="dv">3</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(response[<span class="st">'message'</span>][<span class="st">'content'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+Cell <span class="ansi-green-fg">In[7], line 2</span>
+<span class="ansi-green-fg ansi-bold">      1</span> <span style="font-weight:bold;color:rgb(0,135,0)">import</span> <span style="font-weight:bold;color:rgb(0,0,255)">ollama</span>
+<span class="ansi-green-fg">----&gt; 2</span> response <span style="color:rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">ollama</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">.</span><span class="ansi-yellow-bg">chat</span><span class="ansi-yellow-bg">(</span><span class="ansi-yellow-bg">model</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">'</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">llama3.1</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">'</span><span class="ansi-yellow-bg">,</span><span class="ansi-yellow-bg"> </span><span class="ansi-yellow-bg">messages</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span class="ansi-yellow-bg">[</span>
+<span class="ansi-green-fg ansi-bold">      3</span> <span class="ansi-yellow-bg">  </span><span class="ansi-yellow-bg">{</span>
+<span class="ansi-green-fg ansi-bold">      4</span> <span class="ansi-yellow-bg">    </span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">'</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">role</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">'</span><span class="ansi-yellow-bg">:</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">'</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">user</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">'</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">      5</span> <span class="ansi-yellow-bg">    </span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">'</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">content</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">'</span><span class="ansi-yellow-bg">:</span><span class="ansi-yellow-bg"> </span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">'</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">Why is the sky blue?</span><span style="color:rgb(175,0,0)" class="ansi-yellow-bg">'</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">      6</span> <span class="ansi-yellow-bg">  </span><span class="ansi-yellow-bg">}</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">      7</span> <span class="ansi-yellow-bg">]</span><span class="ansi-yellow-bg">,</span>
+<span class="ansi-green-fg ansi-bold">      8</span> <span class="ansi-yellow-bg">  </span><span class="ansi-yellow-bg">n_probs</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">=</span><span style="color:rgb(98,98,98)" class="ansi-yellow-bg">3</span>
+<span class="ansi-green-fg ansi-bold">      9</span> <span class="ansi-yellow-bg">)</span>
+<span class="ansi-green-fg ansi-bold">     10</span> <span style="color:rgb(0,135,0)">print</span>(response[<span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">message</span><span style="color:rgb(175,0,0)">'</span>][<span style="color:rgb(175,0,0)">'</span><span style="color:rgb(175,0,0)">content</span><span style="color:rgb(175,0,0)">'</span>])
 
-1. **Light Composition**: Sunlight is made up of a spectrum of colors, often remembered by the acronym ROYGBIV (Red, Orange, Yellow, Green, Blue, Indigo, Violet). Each color has a different wavelength and energy level.
-2. **Atmospheric Particles**: The Earth's atmosphere contains tiny molecules and particles like nitrogen (N2), oxygen (O2), carbon dioxide (CO2), water vapor, dust, soot, and pollutants. These particles are much smaller than the wavelengths of light.
-3. **Scattering Effect**: When sunlight enters the Earth's atmosphere, it encounters these tiny particles. The shorter wavelengths of light (like blue and violet) have enough energy to be scattered in all directions by these small particles. This is known as Rayleigh scattering.
-
-**Key Point:** Blue light has a much smaller wavelength than red light, making it more susceptible to being scattered by the atmospheric particles. As a result, more blue light reaches our eyes from the sky compared to other colors, giving the sky its blue appearance during the day, especially in the direction of the sun.
-
-4. **Time of Day and Sky Conditions**: The apparent color of the sky can change depending on the time of day and atmospheric conditions:
-   - **Dawn and Dusk:** When the sunlight passes through more of the Earth's atmosphere, scattering effects reduce the blue light further, making the sky appear more red or orange.
-   - **Cloudy Skies:** Clouds contain water droplets that scatter all wavelengths of light equally (Mie scattering), reducing the contrast between blue and other colors, often leading to a grayish appearance.
-   - **Polluted Atmosphere:** In urban areas with high levels of pollutants and aerosols, the sky can appear more hazy or smoggy due to increased Mie scattering.
-
-In summary, the sky appears blue because of Rayleigh scattering, where shorter wavelengths of light (like blue) are scattered by atmospheric particles in all directions.</code></pre>
+<span class="ansi-red-fg">TypeError</span>: Client.chat() got an unexpected keyword argument 'n_probs'</pre>
+</div>
 </div>
 </div>
 
@@ -312,7 +316,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/jensmueller\.io");
+      var filterRegex = new RegExp("www\.jensmueller\.io");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
