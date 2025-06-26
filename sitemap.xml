@@ -1,39 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>www.jensmueller.io/impressum/index.html</loc>
+    <loc>https://www.jensmueller.io/impressum/index.html</loc>
     <lastmod>2024-12-14T19:10:40.358Z</lastmod>
   </url>
   <url>
-    <loc>www.jensmueller.io/blog/how_to_sample/index.html</loc>
+    <loc>https://www.jensmueller.io/blog/how_to_sample/index.html</loc>
     <lastmod>2024-12-14T20:02:21.252Z</lastmod>
   </url>
   <url>
-    <loc>www.jensmueller.io/index.html</loc>
+    <loc>https://www.jensmueller.io/index.html</loc>
     <lastmod>2024-12-15T07:21:13.886Z</lastmod>
   </url>
   <url>
-    <loc>www.jensmueller.io/experiments/graph_viz.html</loc>
+    <loc>https://www.jensmueller.io/experiments/graph_viz.html</loc>
     <lastmod>2024-10-27T16:23:18.519Z</lastmod>
   </url>
   <url>
-    <loc>www.jensmueller.io/experiments/sampling.html</loc>
+    <loc>https://www.jensmueller.io/experiments/sampling.html</loc>
     <lastmod>2025-01-17T05:38:52.045Z</lastmod>
   </url>
   <url>
-    <loc>www.jensmueller.io/experiments/test.html</loc>
+    <loc>https://www.jensmueller.io/experiments/test.html</loc>
     <lastmod>2025-01-17T05:38:52.045Z</lastmod>
   </url>
   <url>
-    <loc>www.jensmueller.io/projects/index.html</loc>
+    <loc>https://www.jensmueller.io/projects/index.html</loc>
     <lastmod>2025-06-26T16:32:08.695Z</lastmod>
   </url>
   <url>
-    <loc>www.jensmueller.io/blog/disc_vs_gen/index.html</loc>
+    <loc>https://www.jensmueller.io/blog/disc_vs_gen/index.html</loc>
     <lastmod>2024-12-14T19:10:40.272Z</lastmod>
   </url>
   <url>
-    <loc>www.jensmueller.io/blog/index.html</loc>
+    <loc>https://www.jensmueller.io/blog/index.html</loc>
     <lastmod>2025-06-26T16:32:08.694Z</lastmod>
   </url>
 </urlset>
