@@ -32,10 +32,10 @@ website:
     pinned: true
     #logo: /img/logo.png
     left:
-      - text: Blog
-        href: blog/index.qmd
       - text: Projects 
         href: projects/index.qmd
+      - text: Blog
+        href: blog/index.qmd
       #- text: Consumption 
       #  href: consumption/index.qmd
   
