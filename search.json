@@ -44,9 +44,9 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Welcome to my website!",
+    "title": "Jens Müller",
     "section": "",
-    "text": "Github\n  \n  \n    \n     LinkedIn\n  \n  \n    \n     Email\n  \n\n\n\n\nWelcome to my website!\nHi, I am Jens and this is my website. Here, I share topics I’m passionate about, ranging from mathematics and machine learning to futuristic speculations.\nA few words on my background and interests: I pursued and earned two master’s degrees — one in mathematics and the other in computer science. Beyond that, my curiosity led me to explore and study diverse fields, including psychology. During my time at Heidelberg University, I conducted research in machine learning, focusing on challenges related to distribution shifts. My work addressed broad questions like “How can we make reliable predictions when circumstances change?” (robustness, domain generalization) and “How can we detect when shifts and failures occur?” (OOD detection, failure detection, selective classification). I’ve published papers on these topics and completed my PhD in the process.\nCurrently, I work as a Data Scientist at Diamant Software, primarily focusing on Natural Language Processing (NLP) tasks."
+    "text": "Github\n  \n  \n    \n     LinkedIn\n  \n  \n    \n     Email\n  \n\n\n\nHi, I am Jens. Here, I share topics I’m passionate about, ranging from mathematics and machine learning to futuristic speculations.\nA few words on my background and interests: I pursued and earned two master’s degrees — one in mathematics and the other in computer science. Beyond that, my curiosity led me to explore and study diverse fields, including psychology. During my time at Heidelberg University, I conducted research in machine learning, focusing on challenges related to distribution shifts. My work addressed broad questions like “How can we make reliable predictions when circumstances change?” (robustness, domain generalization) and “How can we detect when shifts and failures occur?” (OOD detection, failure detection, selective classification). I’ve published papers on these topics and completed my PhD in the process.\nCurrently, I work as a Data Scientist at Diamant Software, primarily focusing on Natural Language Processing (NLP) tasks."
   },
   {
     "objectID": "experiments/graph_viz.html",
@@ -77,11 +77,11 @@
     "text": "Here’s a list of projects where I took the lead and played a central role in driving their development and success."
   },
   {
-    "objectID": "projects/index.html#dissertation",
-    "href": "projects/index.html#dissertation",
+    "objectID": "projects/index.html#robustness-and-domain-generalization",
+    "href": "projects/index.html#robustness-and-domain-generalization",
     "title": "Projects",
-    "section": "Dissertation",
-    "text": "Dissertation\n\nPhD Dissertation\nThis work represents the culmination of my research at Heidelberg University, contributing to fundamental and critical questions such as: “How and under which circumstances can we predict reliably under distribution shift?” and “How can we identify failure cases under distribution shift?”\nAdditionally, the thesis includes a comprehensive introduction to machine learning, domain generalization and causality, providing a solid foundation for the research."
+    "section": "Robustness and Domain Generalization",
+    "text": "Robustness and Domain Generalization\n\nPhD Dissertation\nThis work represents the culmination of my research at Heidelberg University, contributing to fundamental and critical questions such as: “How and under which circumstances can we predict reliably under distribution shift?” and “How can we identify failure cases under distribution shift?”\nAdditionally, the thesis includes a comprehensive introduction to machine learning, domain generalization and causality, providing a solid foundation for the research."
   },
   {
     "objectID": "projects/index.html#finding-competence-regions-in-domain-generalization",
