@@ -8,6 +8,7 @@ description-meta: "Welcome to my blog! Topics range from machine learning, stati
 listing:
   - id: posts_2024
     contents:
+      - "llm_and_hype/index.qmd"
       - "disc_vs_gen/index.qmd"
       - "how_to_sample/index.qmd"
     sort: "date desc"
@@ -32,4 +33,4 @@ Welcome to my blog! Here, I share my thoughts and explore problems that capture 
 ---
 
  
-<span style="color:#909090; font-size:15px;">The website template is adapted from [Marvin Schmitt](https://marvinschmitt.com/) and post listing is based on the blog of [Andrew Heiss](https://www.andrewheiss.com/). Both are shared under the CC-BY-SA 4.0 license.</span>.
+<span style="color:#909090; font-size:15px;">The website template is adapted from [Marvin Schmitt](https://marvinschmitt.com/) and post listing is based on the blog of [Andrew Heiss](https://www.andrewheiss.com/). Both are shared under the CC-BY-SA 4.0 license.</span>

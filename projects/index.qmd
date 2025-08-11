@@ -8,7 +8,7 @@ Here’s a list of projects where I took the lead and played a central role in d
 
 ----
 
-## Dissertation 
+## Robustness and Domain Generalization 
 
 <img src="/img/fractal_high_colored.png" style="height: 100%; width: 100%; object-fit: contain" onclick="window.open('http://www.ub.uni-heidelberg.de/archiv/34762', 'blank');"/>
 

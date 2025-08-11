@@ -18,10 +18,8 @@ about:
 ::: {#about-block}
 :::
 
-# Welcome to my website!
-
 Hi, 
-I am Jens and this is my website. Here, I share topics I’m passionate about, ranging from mathematics and machine learning to futuristic speculations. 
+I am Jens. Here, I share topics I’m passionate about, ranging from mathematics and machine learning to futuristic speculations. 
 
 A few words on my background and interests: I pursued and earned two master’s degrees — one in mathematics and the other in computer science. Beyond that, my curiosity led me to explore and study diverse fields, including psychology. 
 During my time at Heidelberg University, I conducted research in machine learning, focusing on challenges related to distribution shifts. My work addressed broad questions like *“How can we make reliable predictions when circumstances change?”* (robustness, domain generalization) and *“How can we detect when shifts and failures occur?”* (OOD detection, failure detection, selective classification). I’ve published papers on these topics and completed my PhD in the process.
