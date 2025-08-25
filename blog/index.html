@@ -72,6 +72,34 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-posts_2025 .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-authorname','listing-draft','listing-project','listing-publish','listing-title-meta','listing-description-meta','listing-website','listing-execute','listing-format','listing-language','listing-freeze','listing-title-block-banner','listing-toc','listing-toc-title','listing-toc-location','listing-author','listing-title','listing-description','listing-date','listing-categories','listing-image','listing-twitter-card','listing-path','listing-outputHref','listing-date-modified','listing-filename','listing-file-modified','listing-reading-time','listing-word-count',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-date-modified-sort'] },{ data: ['listing-file-modified-sort'] },{ data: ['listing-reading-time-sort'] },{ data: ['listing-word-count-sort'] }],
+      
+      searchColumns: ["listing-authorname","listing-draft","listing-project","listing-publish","listing-title-meta","listing-description-meta","listing-website","listing-execute","listing-format","listing-language","listing-freeze","listing-title-block-banner","listing-toc","listing-toc-title","listing-toc-location","listing-author","listing-title","listing-description","listing-date","listing-categories","listing-image","listing-twitter-card","listing-path","listing-outputHref","listing-date-modified","listing-filename","listing-file-modified","listing-reading-time","listing-word-count"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-posts_2025'] = new List('listing-posts_2025', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
     const listingTargetEl = window.document.querySelector('#listing-posts_2024 .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
@@ -172,10 +200,11 @@ window.Quarto = {
     <h2 id="toc-title">Year</h2>
    
   <ul>
-  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">2024</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section">2025</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1">2024</a></li>
   </ul>
 </nav>
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(3)</span></div><div class="category" data-category="AI">AI <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Future">Future <span class="quarto-category-count">(2)</span></div><div class="category" data-category="LLM">LLM <span class="quarto-category-count">(2)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="AI">AI <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Evolution">Evolution <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Future">Future <span class="quarto-category-count">(2)</span></div><div class="category" data-category="LLM">LLM <span class="quarto-category-count">(2)</span></div></div></div>
 <!-- main -->
 <main class="content column-page-left" id="quarto-document-content">
 
@@ -206,11 +235,35 @@ window.Quarto = {
 
 <p>Welcome to my blog! Here, I share my thoughts and explore problems that capture my attention. Topics range from machine learning and mathematics to futuristic speculations. Posts vary in length — some are concise, focusing on a single idea, while others are more comprehensive, exploring entire topics.</p>
 <section id="section" class="level2">
-<h2 class="anchored" data-anchor-id="section">2024</h2>
-<div id="listing-posts_2024" class="quarto-listing quarto-listing-container-custom">
+<h2 class="anchored" data-anchor-id="section">2025</h2>
+<div id="listing-posts_2025" class="quarto-listing quarto-listing-container-custom">
 <div class="list blog">
     
-    <div class="blog-entry" data-index="0" data-categories="AI,LLM,Future" data-listing-date-sort="1754863200000" data-listing-file-modified-sort="1754891170306" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1802">
+    <div class="blog-entry" data-index="0" data-categories="Evolution" data-listing-date-sort="1754863200000" data-listing-file-modified-sort="1755149166359" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1750">
+        <div class="metadata">          
+            <p class="date listing-date">August 11, 2025</p>
+        </div>
+        <div class="body">
+            <p class="title listing-title"><a href="../blog/evolution_intelli/index.html">An argument for evolutionary convergence towards intelligence and complexity</a></p>
+            
+            <div class="post-categories listing-categories">
+                
+                <div class="post-category listing-category" onclick="window.quartoListingCategory('Evolution'); return false;">
+                    Evolution
+                </div>
+                
+            </div>
+            
+            <p class="description listing-description">In this article we argue that intelligence something that will naturally emerge in the timeline of evolution and something we might also see on other planets as a natural occuring phenomenon.</p>
+        </div>
+        
+        <div class="thumbnail">
+            <img src="../blog/evolution_intelli/iceberg.png" alt="An argument for evolutionary convergence towards intelligence and complexity" title="An argument for evolutionary convergence towards intelligence and complexity">
+        </div>
+        
+    </div>
+    
+    <div class="blog-entry" data-index="1" data-categories="AI,LLM,Future" data-listing-date-sort="1754863200000" data-listing-file-modified-sort="1754891170306" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1802">
         <div class="metadata">          
             <p class="date listing-date">August 11, 2025</p>
         </div>
@@ -242,7 +295,18 @@ window.Quarto = {
         
     </div>
     
-    <div class="blog-entry" data-index="1" data-categories="LLM" data-listing-date-sort="1733180400000" data-listing-file-modified-sort="1734206541252" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2054">
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1">2024</h2>
+<div id="listing-posts_2024" class="quarto-listing quarto-listing-container-custom">
+<div class="list blog">
+    
+    <div class="blog-entry" data-index="0" data-categories="LLM" data-listing-date-sort="1733180400000" data-listing-file-modified-sort="1734206541252" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2054">
         <div class="metadata">          
             <p class="date listing-date">December 3, 2024</p>
         </div>
@@ -266,7 +330,7 @@ window.Quarto = {
         
     </div>
     
-    <div class="blog-entry" data-index="2" data-categories="AI,Future" data-listing-date-sort="1728943200000" data-listing-file-modified-sort="1734203440272" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="375">
+    <div class="blog-entry" data-index="1" data-categories="AI,Future" data-listing-date-sort="1728943200000" data-listing-file-modified-sort="1734203440272" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="2" data-listing-word-count-sort="375">
         <div class="metadata">          
             <p class="date listing-date">October 15, 2024</p>
         </div>
