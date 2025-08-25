@@ -2,7 +2,6 @@
   {
     "listing": "/blog/index.html",
     "items": [
-      "/blog/evolution_intelli/index.html",
       "/blog/llm_and_hype/index.html",
       "/blog/how_to_sample/index.html",
       "/blog/disc_vs_gen/index.html"
