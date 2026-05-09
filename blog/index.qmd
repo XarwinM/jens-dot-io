@@ -3,7 +3,7 @@ title: "My Blog"
 author: "Jens Müller"
 title-block-banner: false
 page-layout: full
-description-meta: "Welcome to my blog! Topics range from machine learning, statistics to futuristic speculations."
+description-meta: "Welcome to my blog! Topics range from machine learning and mathematics to applied AI systems and LLM engineering."
 
 listing:
   - id: posts_2025
@@ -29,7 +29,7 @@ code-tools: false
 comments: false
 ---
 
-Welcome to my blog! Here, I share my thoughts and explore problems that capture my attention. Topics range from machine learning and mathematics to futuristic speculations. Posts vary in length — some are concise, focusing on a single idea, while others are more comprehensive, exploring entire topics. 
+I use this blog to think through problems that catch my interest — across machine learning, mathematics, applied AI systems, and LLM engineering. Some posts focus on a single idea; others are longer explorations of a topic.
 
 ## 2025
 
