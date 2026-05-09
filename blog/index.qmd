@@ -6,9 +6,15 @@ page-layout: full
 description-meta: "Welcome to my blog! Topics range from machine learning, statistics to futuristic speculations."
 
 listing:
+  - id: posts_2025
+    contents:
+      - "evolution_intelli/index.qmd"
+      - "llm_and_hype/index.qmd"
+    sort: "date desc"
+    template: ../html/blog/listing.ejs
+    categories: true
   - id: posts_2024
     contents:
-      - "llm_and_hype/index.qmd"
       - "disc_vs_gen/index.qmd"
       - "how_to_sample/index.qmd"
     sort: "date desc"
@@ -24,6 +30,11 @@ comments: false
 ---
 
 Welcome to my blog! Here, I share my thoughts and explore problems that capture my attention. Topics range from machine learning and mathematics to futuristic speculations. Posts vary in length — some are concise, focusing on a single idea, while others are more comprehensive, exploring entire topics. 
+
+## 2025
+
+:::{#posts_2025}
+:::
 
 ## 2024
 
